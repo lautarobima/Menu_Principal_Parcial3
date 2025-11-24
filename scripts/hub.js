@@ -105,7 +105,7 @@ const setGamesDisplay = (arr, docElement, buttonAddID) => {
                     <h3 class="game-title">${title}</h3>
                     <p class="game-date">${releaseDate}</p>
                     <img src="${boxArt}">
-                    <p class="game-price">${price}</p>
+                    <p class="game-price">${price}$</p>
                     <button class="game-add-button ${buttonAddID}" id=${id}>Add to cart</button>
                 </div>`
         }).join("");
