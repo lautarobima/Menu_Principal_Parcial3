@@ -362,8 +362,38 @@ form.addEventListener("submit", (event) => {
     selectBuyWindow();
 });
 
-async function LogIn(){}
+async function LogIn(nombre, password){
+    const url = "https://diligent-victory-production.up.railway.app/employees"
+    // Despues hacer una barra de carga
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
 
+        const data = await response.json();
+        for (let i = 0; i<data.length; i++){
+            let user_data = data[i];
+            if (user_data.name === nombre && user_data.password === password){
+                console.log('redirecting');
+                window.location.href = 'https://lautarobima.github.io/Gestion_Pedidos_Parcial3/';
+            }
+        }
+        return false;
+
+    } catch (error) {
+        console.error(`Error in fetching data: ${error}`);
+        return false;
+    }
+}
+
+document.getElementById("formWindow2").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nombre = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    LogIn(nombre, password);
+})
 
 console.log("Abrir el API...");
 startApp();
